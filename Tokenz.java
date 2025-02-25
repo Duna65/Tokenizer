@@ -8,10 +8,10 @@ import java.util.StringTokenizer;
 
 public class Tokenz {
     public static void main(String[] args) {
-        float cit=0;//variables for totals
-        float cit0=0;
-        float cit1=0;
-        float cit01=0;
+        float cit=0;//variables for totals, cit is the total frequency added up
+        float cit0=0;//cit0 is the amount of frequency variables
+        float cit1=0;//cit1 is the average of the frequencies
+        float cit01=0;//cit01 is the total of the percents
          try {
       File File0 = new File("letter_frequency.csv");//new file read
       Scanner Read = new Scanner(File0);//new scanner
@@ -19,17 +19,17 @@ public class Tokenz {
         String data = Read.nextLine();
         StringTokenizer st = new StringTokenizer(data," ");//separates the data 
       while (st.hasMoreTokens()) {//reads the tokens and prints them
-            String i = st.nextToken().replace(",","");//makes the next token a variable, and removes commas
-            if(false==i.contains("\"")){//tests if the words have quotes
-            float ci = Float.parseFloat(i);//changes the variable into a float
-            if(ci>=101){//frequencies
+            String tokn = st.nextToken().replace(",","");//makes the next token a variable, and removes commas
+            if(false==tokn.contains("\"")){//tests if the words have quotes
+            float ci = Float.parseFloat(tokn);//changes the variable into a float
+            if(ci>=101){//adds the frequency to the total frequency and gets the total number of frequencies
                 cit+=ci;
                 cit0++;
             }
-            if(ci<=100){//percents
+            if(ci<=100){//adds all of the percents together
                 cit01+=ci;
             }}
-            System.out.println(i);//prints the variable
+            System.out.println(tokn);//prints the variable
             }
         }
       Read.close();
@@ -38,7 +38,7 @@ public class Tokenz {
       System.out.println("An error occurred.");
       e.printStackTrace();
     } 
-    cit1=cit/cit0;//average
+    cit1=cit/cit0;//finding average and storing it in cit1
     System.out.println("Totals:");//prints the totals
     System.out.println("Average Frequency: "+cit1);
     System.out.println("Total Percent: "+cit01);
